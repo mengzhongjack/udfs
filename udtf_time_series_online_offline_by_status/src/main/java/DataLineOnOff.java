@@ -9,7 +9,7 @@ import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectIn
 
 import java.util.*;
 
-public class SortDateLineAndStatusIntoPairs extends GenericUDTF {
+public class DataLineOnOff extends GenericUDTF {
 
 
     private PrimitiveObjectInspector stringOI = null;
