@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/merge_two_cross_timeline" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/merge_two_timeline" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/phone_num_prase" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/udtf_split_duration_cross_two_days" vcs="Git" />
+  </component>
+</project>
