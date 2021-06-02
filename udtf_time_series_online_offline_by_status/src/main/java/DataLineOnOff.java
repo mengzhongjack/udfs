@@ -14,8 +14,8 @@ public class DataLineOnOff extends GenericUDTF {
 
     private PrimitiveObjectInspector stringOI = null;
 
-    private String startStatusFlag = "3";
-    private String endStatusFlag = "4";
+    private String startStatusFlag = "1";
+    private String endStatusFlag = "2";
     /**
      *对传入的参数进行初始化
      *判断参数个数/类型
