@@ -10,12 +10,9 @@ import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectIn
 import java.util.*;
 
 public class DataLineOnOff extends GenericUDTF {
-
-
     private PrimitiveObjectInspector stringOI = null;
-
-    private String startStatusFlag = "1";
-    private String endStatusFlag = "2";
+    private String startStatusFlag = "3";
+    private String endStatusFlag = "4";
     /**
      *对传入的参数进行初始化
      *判断参数个数/类型
@@ -112,14 +109,43 @@ public class DataLineOnOff extends GenericUDTF {
         }
         Collections.sort(dateLineActionList);
 
-        //            如果第一行是下线时间，则剔除
+//        //            如果第一行是下线时间，则剔除
+//        while (true){
+//            if( dateLineActionList.get(0).getAction() == Integer.parseInt(this.endStatusFlag)  ){
+//                dateLineActionList.remove(0);
+//            } else {
+//                break;
+//            }
+//        }
+
+        //            如果第一行是下线时间，则增加上线时间
         while (true){
             if( dateLineActionList.get(0).getAction() == Integer.parseInt(this.endStatusFlag)  ){
-                dateLineActionList.remove(0);
+//                dateLineActionList.remove(0);
+                Long firstTime = dateLineActionList.get(0).generaDateFirstTimeLine();
+                dateLineActionList.add(new DateLineAction(firstTime,Integer.parseInt(this.startStatusFlag)));
+                Collections.sort(dateLineActionList);
             } else {
                 break;
             }
         }
+
+
+        //            如果最后一行是上线时间，则增加下线时间
+        while (true){
+            boolean flag = dateLineActionList.get(dateLineActionList.size()-1 ).getAction() == Integer.parseInt(this.startStatusFlag);
+            if( flag  ){
+//                dateLineActionList.remove(0);
+                Long latestTime = dateLineActionList.get(0).generaDateLatestTimeLine();
+                dateLineActionList.add(new DateLineAction(latestTime,Integer.parseInt(this.endStatusFlag)));
+                Collections.sort(dateLineActionList);
+            } else {
+                break;
+            }
+        }
+
+
+
         int forLenth = dateLineActionList.size();
         for (int i = 1; i < forLenth; i++) {
 
